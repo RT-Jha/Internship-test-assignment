@@ -1,0 +1,21 @@
+fn shortest_word(s: &str) -> Option<String> {
+    let words: Vec<&str> = s.split_whitespace().collect();
+    if words.is_empty() {
+        return None;
+    }
+    let mut shortest = String::from(words[0]);
+    for word in words.iter().skip(1) {
+        if word.len() < shortest.len() {
+            shortest = String::from(*word);
+        }
+    }
+    Some(shortest)
+}
+
+fn main() {
+    let input = "Hello! How are you";
+    match shortest_word(input) {
+        Some(shortest) => println!("The shortest word is: {}", shortest),
+        None => println!("The input string is empty."),
+    }
+}
