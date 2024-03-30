@@ -1,0 +1,27 @@
+use std::io;
+
+fn main() {
+    println!("Enter a string:");
+    
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+    
+    let input = input.trim(); // Remove leading whitespace
+    
+    if is_palindrome(input) {
+        println!("The string is a palindrome.");
+    } else {
+        println!("The string is not a palindrome.");
+    }
+}
+
+fn is_palindrome(s: &str) -> bool {
+    // Convert the string to lowercase for case-insensitive comparison
+    let s = s.to_lowercase();
+    
+    // Remove non-alphanumeric characters
+    let cleaned_str: String = s.chars().filter(|c| c.is_alphanumeric()).collect();
+    
+    // Check if the cleaned string is equal to its reverse
+    cleaned_str == cleaned_str.chars().rev().collect::<String>()
+}
